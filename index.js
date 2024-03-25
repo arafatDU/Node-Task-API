@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import taskRoute from "./routes/taskRoute.js";
 import dotenv from "dotenv";
 dotenv.config();
+import notFound from "./middleware/not-found.js";
 
 const port = process.env.PORT;
 const mongodb_connect = process.env.MONGO_URI;
@@ -14,6 +15,9 @@ app.use(express.json());
 
 // routes
 app.use('/api/tasks', taskRoute);
+
+app.use(notFound);
+
 
 
 app.get('/', (req, res) => {
