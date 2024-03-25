@@ -4,6 +4,7 @@ import taskRoute from "./routes/taskRoute.js";
 import dotenv from "dotenv";
 dotenv.config();
 import notFound from "./middleware/not-found.js";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 const port = process.env.PORT;
 const mongodb_connect = process.env.MONGO_URI;
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/tasks', taskRoute);
 
 app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 
 
